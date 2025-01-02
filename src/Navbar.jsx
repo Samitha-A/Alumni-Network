@@ -1,30 +1,63 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 //import { FaHome, FaFileAlt, FaGlobe, FaBook, FaCode, FaMicrophone, FaSignOutAlt } from 'react-icons/fa';
 import './Navbar.css'; // Import the CSS file
+import { useNavigate } from 'react-router-dom';
+import logo from './logo.png';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const menuItems = [
+    { title: "HOME", path: '/' },
+    { title: 'ALUMNI DIRECTORY', path: '/AlumniDirectory' },
+    { title: 'JOBS', path: '/Job-listings' },
+    { title: 'MENTORING', path: '/Mentoring' },
+    { title: 'PROFILE', path: '/profile' }
+  ];
+
   return (
-    <nav className="navbar">
-      <ul>
-        <li>
-          <Link to="/home"> Home</Link>
-        </li>
-        <li>
-          <Link to="/alumnidirectory"> Alumni Directory</Link>
-        </li>
-        <li>
-          <Link to="/job-listings"> Job Listings</Link>
-        </li>
-        <li>
-          <Link to="/mentoring"> Mentoring <span className="new-badge">new</span></Link>
-        </li>
-        <li className="profile">
-          <Link to="/profile"> Edit Profile</Link>
-        </li>
-      </ul>
-    </nav>
+    <div className="navigation">
+    <div className="top-bar">
+        <div className="logo-section">
+          <img 
+            src={logo} 
+            alt="University Logo" 
+            className="logo-image"
+          />
+          <h1 className="portal-title">
+            Alumni Portal
+          </h1>
+        </div>
+        <button 
+          onClick={() => navigate('/login')}
+          className="login-button"
+        >
+          LOGIN
+        </button>
+      </div>
+    <div className="nav-bar">
+        <nav className="nav-container">
+          <ul className="nav-list">
+            {menuItems.map((item, index) => (
+              <li 
+                key={index}
+                className="nav-item"
+              >
+                <a 
+                  href={item.path}
+                  className="nav-link"
+                >
+                  {item.title}
+                  {item.hasDropdown && (
+                    <span className="dropdown-indicator">▼</span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
   );
 };
-
-export default Navbar;
+  export default Navbar;

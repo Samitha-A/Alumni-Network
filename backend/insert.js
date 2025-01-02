@@ -13,8 +13,8 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
         // Create a sample user
         const sampleUser = new User({
-            username: 'sripriya',
-            password: '$2b$12$fyg1u/A3n4tbyRzc9HQ8neJ3zagg/GiFICTBI2Y/noBorojkBSt86',
+            username: 'athul',
+            password: '$2b$12$1dlrGIFb4rH.BFfahEAvueKaOHLFXgKxEz.n4Gz5gIa/PGDu77rMe',
         });
 
         // Save the user to the database
