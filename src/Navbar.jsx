@@ -25,7 +25,7 @@ const Navbar = () => {
             className="logo-image"
           />
           <h1 className="portal-title">
-            Alumni Portal
+            Alumni portal
           </h1>
         </div>
         <button 

@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './Home.css';
-import p1 from './p1.png';
-import p2 from './p2.png';
-import p3 from './p3.png';
 import logo from './logo.png';
+import p1 from './p1.png';
+import p2 from './p1.png';
+import p3 from './p3.png';
 
 // Header Component
 const Header = () => {

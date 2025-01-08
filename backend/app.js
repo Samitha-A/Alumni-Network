@@ -1,37 +1,40 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Import the cors package
-const authRoutes = require('./routes/auth');
-require('dotenv').config();
+const cors = require('cors');
+const userRoutes = require('./routes/userRoutes');
 
-const app = express(); // Initialize the Express app
+const app = express();
+const PORT = 5000;
 
-// Middleware to parse JSON bodies
+// Middleware
+app.use(cors());
 app.use(express.json());
 
-// Use CORS middleware
-app.use(cors({
-    origin: 'http://localhost:3000', // Adjust this to match your frontend's URL
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
-}));
+const User = require('./models/userModel');
 
-// Define routes
-app.use('/api', authRoutes);
+// In your backend API route (for example, using Express)
+app.get('/api/users', async (req, res) => {
+    try {
+      const users = await User.find();  // Assuming you're using Mongoose to fetch data
+      console.log(users);  // Log to check if any users are being fetched from the database
+      res.json(users);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      res.status(500).json({ message: 'Error fetching users' });
+    }
+  });
+  
 
-app.options('*', cors()); // Handle preflight requests for all routes
+// MongoDB Connection
+const MONGO_URI = 'mongodb+srv://samitha:password0910@cluster1.ymsm6.mongodb.net/';
+mongoose
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error('MongoDB connection error:', err));
 
+// Routes
+app.use('/api', userRoutes);
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => console.log('Connected to MongoDB Atlas'))
-.catch((error) => console.error('Error connecting to MongoDB Atlas:', error));
-
-// Start the server
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
+import g from './g.jpeg';
+import p3 from './p3.png';
 
 const Mentoring = () => {
   useEffect(() => {
@@ -17,19 +19,19 @@ const mentors = [
     name: 'Rahul',
     occupation: 'Software Engineer at Google',
     bio: 'Passionate about helping young professionals transition into tech roles.',
-    image: 'https://via.placeholder.com/100', // Replace with actual image
+    image: g, 
   },
   {
     name: 'Sahaana',
     occupation: 'Marketing Director at Amazon',
     bio: 'Loves guiding students towards a successful career in digital marketing.',
-    image: 'https://via.placeholder.com/100', // Replace with actual image
+    image: p3, 
   },
   {
     name: 'Akshay',
     occupation: 'Data Scientist at Facebook',
     bio: 'Expert in data analytics and machine learning. Ready to share my knowledge.',
-    image: 'https://via.placeholder.com/100', // Replace with actual image
+    image: g, 
   },
 ];
 
