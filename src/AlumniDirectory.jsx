@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./AlumniDirectory.css";
-import linkedin from './linkedin.svg';
-import github from './github.svg';
-import mail from './gmail.svg';
+import linkedin from "./linkedin.svg";
+import github from "./github.svg";
+import mail from "./gmail.svg";
 
 const AlumniDirectory = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -12,7 +12,7 @@ const AlumniDirectory = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Fetch alumni data from backend using fetch
+  // Fetch alumni data from backend
   useEffect(() => {
     const fetchAlumni = async () => {
       try {
@@ -22,14 +22,14 @@ const AlumniDirectory = () => {
           throw new Error("Failed to fetch data");
         }
 
-        const data = await response.json(); // Parse JSON from the response
-        console.log(data); // Log to verify the response
+        const data = await response.json();
+        console.log("Fetched Alumni Data:", data);
         setAlumniData(data);
         setFilteredAlumni(data);
-        setLoading(false); // Set loading to false once data is fetched
+        setLoading(false);
       } catch (error) {
         setError("Failed to load alumni data");
-        setLoading(false); // Set loading to false if there's an error
+        setLoading(false);
         console.error("Error fetching alumni data:", error);
       }
     };
@@ -40,13 +40,18 @@ const AlumniDirectory = () => {
   // Filter alumni based on search term
   useEffect(() => {
     setFilteredAlumni(
-      alumniData.filter((alumni) =>
-        alumni.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        alumni.studentId.includes(searchTerm) ||
-        (alumni.work_experience &&
-          alumni.work_experience.some((work) =>
-            work.company.toLowerCase().includes(searchTerm.toLowerCase())
-          ))
+      alumniData.filter(
+        (alumni) =>
+          (alumni.username &&
+            alumni.username.toLowerCase().includes(searchTerm.toLowerCase())) ||
+          (alumni.last_name &&
+            alumni.last_name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+          alumni.batch.includes(searchTerm) ||
+          alumni.phone_no.includes(searchTerm) ||
+          (alumni.work_experience &&
+            alumni.work_experience.some((work) =>
+              work.company.toLowerCase().includes(searchTerm.toLowerCase())
+            ))
       )
     );
   }, [searchTerm, alumniData]);
@@ -74,7 +79,7 @@ const AlumniDirectory = () => {
               <tr>
                 <th>Profile</th>
                 <th>Name</th>
-                <th>Student ID</th>
+                <th>Phone</th>
                 <th>Batch</th>
                 <th>Work</th>
               </tr>
@@ -90,14 +95,14 @@ const AlumniDirectory = () => {
                     key={alumni._id}
                     onClick={() => {
                       setSelectedAlumni(alumni);
-                      console.log(alumni); // Log the selected alumni for debugging
+                      console.log("Selected Alumni:", alumni);
                     }}
                   >
                     <td>
                       <div className="profile-pic"></div>
                     </td>
-                    <td>{alumni.name}</td>
-                    <td>{alumni.studentId}</td>
+                    <td>{`${alumni.username} ${alumni.last_name}`}</td>
+                    <td>{alumni.phone_no}</td>
                     <td>{alumni.batch}</td>
                     <td>
                       {alumni.work_experience && alumni.work_experience.length > 0
@@ -113,35 +118,36 @@ const AlumniDirectory = () => {
         {selectedAlumni && (
           <div className="alumni-details">
             <div className="profile-pic large"></div>
-            <h2>{selectedAlumni.name}</h2>
+            <h2>{`${selectedAlumni.username} ${selectedAlumni.last_name}`}</h2>
             <p>{selectedAlumni.department}</p>
             <p>Batch {selectedAlumni.batch}</p>
+            <p>Phone: {selectedAlumni.phone_no}</p>
+
             <div className="social-links">
-  {selectedAlumni.gitHub && (
-    <a href={selectedAlumni.gitHub} target="_blank" rel="noopener noreferrer">
-      <img src={github} 
-        alt="GitHub"
-        className="social-icon"
-      />
-    </a>
-  )}
-  {selectedAlumni.linkedin && (
-    <a href={selectedAlumni.linkedin} target="_blank" rel="noopener noreferrer">
-      <img src={linkedin} // Update this path to the correct location of the icon file
-        alt="LinkedIn"
-        className="social-icon"
-      />
-    </a>
-  )}
-  {selectedAlumni.mail && (
-    <a href={`mailto:${selectedAlumni.mail}`}>
-      <img src={mail} // Update this path to the correct location of the icon file
-        alt="Mail"
-        className="social-icon"
-      />
-    </a>
-  )}
-</div>
+              {selectedAlumni.gitHub && (
+                <a
+                  href={selectedAlumni.gitHub}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={github} alt="GitHub" className="social-icon" />
+                </a>
+              )}
+              {selectedAlumni.linkedin && (
+                <a
+                  href={selectedAlumni.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={linkedin} alt="LinkedIn" className="social-icon" />
+                </a>
+              )}
+              {selectedAlumni.mail && (
+                <a href={`mailto:${selectedAlumni.mail}`}>
+                  <img src={mail} alt="Mail" className="social-icon" />
+                </a>
+              )}
+            </div>
 
             <h3>WORK EXPERIENCE</h3>
             {selectedAlumni.work_experience &&

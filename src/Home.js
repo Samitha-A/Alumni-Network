@@ -4,9 +4,10 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './Home.css';
 import logo from './logo.png';
-import p1 from './p1.png';
-import p2 from './p1.png';
-import p3 from './p3.png';
+//import p1 from './p1.png';
+//import p2 from './p2.png';
+import g from './g.jpeg';
+//import p3 from './p3.png';
 
 // Header Component
 const Header = () => {
@@ -14,7 +15,7 @@ const Header = () => {
 
   const menuItems = [
     { title: "HOME", path: '/' },
-    { title: 'ALUMNI DIRECTORY', path: '/AlumniDirectory' },
+    { title: 'DIRECTORY', path: '/AlumniDirectory' },
     { title: 'JOBS', path: '/JobListings' },
     { title: 'MENTORING', path: '/Mentoring' },
     { title: 'PROFILE', path: '/profile' }
@@ -31,7 +32,7 @@ const Header = () => {
             className="logo-image"
           />
           <h1 className="portal-title">
-            Alumni Portal
+            Contact Portal
           </h1>
         </div>
         <button 
@@ -89,19 +90,19 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: 'Rethanyaa',
+      name: 'Rahul',
       quote: 'BIT provided me with opportunities I never thought possible. The faculties were exceptional!',
-      image: p1,
+      image: g,
     },
     {
-      name: 'Keerthana',
+      name: 'Keerthan',
       quote: 'The education and community at BIT truly shaped my future. I am grateful for the experience!',
-      image: p2,
+      image: global,
     },
     {
-      name: 'Nisha',
+      name: 'Nishanth',
       quote: 'An amazing institution that helped me grow both professionally and personally.',
-      image: p3,
+      image: g,
     },
   ];
 

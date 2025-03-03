@@ -26,7 +26,7 @@ app.get('/api/users', async (req, res) => {
   
 
 // MongoDB Connection
-const MONGO_URI = 'mongodb+srv://samitha:password0910@cluster1.ymsm6.mongodb.net/';
+const MONGO_URI = 'mongodb+srv://samitha:password0910@cluster1.ymsm6.mongodb.net/Users';
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))

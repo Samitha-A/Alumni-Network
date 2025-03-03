@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./Profile.css";
-import p1 from './p1.png';
+import g from './g.jpeg';
 
 const Profile = () => {
   const [formData, setFormData] = useState({
-    firstName: "Samitha",
+    firstName: "Ram",
     lastName: "Amutharajan",
     email: "samithaa.amutharajan@gmail.com",
     phoneNumber: "9876543210",
@@ -90,7 +90,7 @@ const Profile = () => {
           <div className="profile-header">
             <h1 className="profile-title">Profile</h1>
             <div className="profile-image-container">
-              <img src={p1} alt="Profile" className="profile-image" />
+              <img src={g} alt="Profile" className="profile-image" />
               <button className="camera-button">✎</button>
             </div>
           </div>

@@ -1,8 +1,9 @@
 const express = require('express');
-const { getAllUsers } = require('../controllers/userController');
+const { getAllUsers,loginUser } = require('../controllers/userController');
 const router = express.Router();
 
 // Fetch all users (alumni)
-router.get('/users', getAllUsers);
+router.get('/Users', getAllUsers);
+router.post("/login", loginUser); 
 
 module.exports = router;

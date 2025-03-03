@@ -22,7 +22,7 @@ const Login = () => {
 
         try {
             // Send login data to backend
-            const response = await fetch('http://localhost:3000/api/login', { // Ensure this matches your backend port
+            const response = await fetch('http://localhost:5000/api/login', { // Ensure this matches your backend port
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const Login = () => {
                 if (data.token) { // Check if the token exists
                     localStorage.setItem('token', data.token);
                     alert('Login successful! Welcome back.');
-                    navigate('/home'); // Redirect after successful login
+                    navigate('/'); // Redirect after successful login
                 } else {
                     setError('Login failed. No token received.'); // Handle unexpected response
                 }
@@ -75,9 +75,9 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit" style={styles.button} disabled={loading}>
-                    {loading ? 'Logging in...' : 'Login'} {/* Button text changes based on loading state */}
-                </button>
+               <button type="submit" style={styles.button} disabled={loading}>
+        {loading ? 'Logging in...' : 'Login'}
+    </button>
             </form>
         </div>
     );

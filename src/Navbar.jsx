@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const menuItems = [
     { title: "HOME", path: '/' },
-    { title: 'ALUMNI DIRECTORY', path: '/AlumniDirectory' },
+    { title: 'DIRECTORY', path: '/AlumniDirectory' },
     { title: 'JOBS', path: '/Job-listings' },
     { title: 'MENTORING', path: '/Mentoring' },
     { title: 'PROFILE', path: '/profile' }
@@ -25,7 +25,7 @@ const Navbar = () => {
             className="logo-image"
           />
           <h1 className="portal-title">
-            Alumni portal
+            Contact portal
           </h1>
         </div>
         <button 
